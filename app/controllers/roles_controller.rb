@@ -22,6 +22,13 @@ class RolesController < ApplicationController
   
   def hide_roles
     @roles = Role.all
+    if request.post?
+      params[:role].each do |role|
+        rle = Role.find(role[0])
+        rle.update_attribute(:enable_role, role[1]["role_name"])
+      end
+      redirect_to roles_path
+    end
   end
   
   private

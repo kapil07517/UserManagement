@@ -2,7 +2,7 @@
   <% @roles.each_slice(3).to_a.each do |roles| %>
     <ul class="list-inline">
       <% roles.each do |role| %>
-        <li class="col-sm-4"><%= role.role_name %> <%= check_box_tag "role[#{role.id}][role_name]" %></li>
+        <li class="col-sm-4"><%= role.role_name %> <%= check_box_tag "role[#{role.id}][role_name]",{}, role.enable_role %></li>
       <% end %>
     </ul>
   <% end %>
