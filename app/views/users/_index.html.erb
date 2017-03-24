@@ -27,7 +27,8 @@
               <td><% user.images.each do |image| %>&nbsp;<%= image_tag(image.avatar.url(:thumb)) %><% end %></td>
               <td><%= user.first_name %></td>        
               <td><%= user.last_name %></td>
-              <td><% user.roles.reject(&:blank?).each do |role| %><%= Role.find(role).role_name %><% end %></td>
+              <% roles = user.roles ? user.roles.reject(&:blank?) : [] %>
+              <td><% roles.each do |role| %>&nbsp;<%= Role.find(role).role_name %>,<% end %></td>
             </tr>
           <% end %>
         </tbody>

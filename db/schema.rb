@@ -13,30 +13,33 @@
 
 ActiveRecord::Schema.define(version: 20170323032215) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "images", force: :cascade do |t|
-    t.integer  "user_id",             limit: 4
-    t.string   "avatar_file_name",    limit: 255
-    t.string   "avatar_content_type", limit: 255
-    t.integer  "avatar_file_size",    limit: 4
+    t.integer  "user_id"
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
-    t.datetime "created_at",                      null: false
-    t.datetime "updated_at",                      null: false
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
   end
 
   create_table "roles", force: :cascade do |t|
-    t.string   "role_name",   limit: 255
-    t.boolean  "enable_role",             default: true
-    t.datetime "created_at",                             null: false
-    t.datetime "updated_at",                             null: false
+    t.string   "role_name"
+    t.boolean  "enable_role", default: true
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "first_name", limit: 255
-    t.string   "last_name",  limit: 255
-    t.string   "email",      limit: 255
-    t.string   "roles",      limit: 255
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "email"
+    t.string   "roles",                   array: true
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end

@@ -27,7 +27,7 @@ class UsersController < ApplicationController
   end
   
   def search
-    @users = User.where("roles LIKE '%#{params[:role_name]}%'").paginate(:page => params[:page], :per_page => 10)
+    @users = User.paginate(:page => params[:page], :per_page => 10)
     render :index
   end
   
