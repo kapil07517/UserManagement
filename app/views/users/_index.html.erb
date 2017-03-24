@@ -15,17 +15,19 @@
       <table class="table table-striped">
         <thead>
           <tr>
-            <th>First Name</th>        
-            <th>Last Name</th>
-            <th>Email</th>
+            <th></th>
+            <th><%= sortable "first_name" %></th>        
+            <th><%= sortable "last_name" %></th>
+            <th>Role</th>
           </tr>
         </thead>
         <tbody>
           <% @users.each do |user| %>
             <tr>
+              <td><% user.images.each do |image| %>&nbsp;<%= image_tag(image.avatar.url(:thumb)) %><% end %></td>
               <td><%= user.first_name %></td>        
               <td><%= user.last_name %></td>
-              <td><%= user.email %></td>
+              <td><% user.roles.reject(&:blank?).each do |role| %><%= Role.find(role).role_name %><% end %></td>
             </tr>
           <% end %>
         </tbody>
